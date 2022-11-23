@@ -1,9 +1,10 @@
-package org.globantBank;
+package org.globantBank.tests;
 
 import io.restassured.response.Response;
+import org.globantBank.utils.tests.BaseTest;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 public class GettingTest extends BaseTest {
 
@@ -16,10 +17,7 @@ public class GettingTest extends BaseTest {
                 .when()
                 .get(URL);
 
-        response.then().extract().response();
-
         response.prettyPrint();
 
-        System.out.println(response.jsonPath());
     }
 }

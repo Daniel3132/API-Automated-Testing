@@ -1,22 +1,26 @@
-package org.globantBank;
+package org.globantBank.tests;
 
 import io.restassured.response.Response;
+import org.globantBank.utils.tests.BaseTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class DeleteTest extends BaseTest {
+public class PostTest extends BaseTest {
 
     @Test
-    public void deleteUser() {
+    public void postClient() {
+
         Response response = given()
                 .contentType("application/json")
+                .baseUri(URL)
+                .basePath("/clients")
                 .when()
-                .delete(URL);
+                .post(URL);
 
         response.then().extract().response();
         response.prettyPrint();
 
-        response.then().statusCode(200);
+        response.then().statusCode(201);
     }
 }

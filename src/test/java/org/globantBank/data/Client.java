@@ -1,4 +1,4 @@
-package org.globantBank;
+package org.globantBank.data;
 
 public class Client {
 
@@ -12,6 +12,9 @@ public class Client {
     private boolean Active;
     private String Country;
     private float Telephone;
+
+    public Client() {
+    }
 
     public Client(int ID, String name, String lastName, float accountNumber, double amount, String transactionType, String email, boolean active, String country, float telephone) {
         this.ID = ID;
