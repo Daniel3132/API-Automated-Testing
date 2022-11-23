@@ -12,12 +12,11 @@ public class UpdateTest extends BaseTest {
     @Test
     public void updateClient() {
         //It should be created as a Client Object
-        Client client  = new Client();
 
 
         Response response = given()
                 .contentType("application/json")
-                .body(client)
+                .body("")
                 .when()
                 .put(URL);
 

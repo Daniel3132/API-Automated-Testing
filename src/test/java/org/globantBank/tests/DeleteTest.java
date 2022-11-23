@@ -1,23 +1,36 @@
 package org.globantBank.tests;
 
-import io.restassured.response.Response;
 import org.globantBank.utils.tests.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
+import java.util.List;
+
+import static org.globantBank.reporting.Reporter.*;
+
 
 public class DeleteTest extends BaseTest {
 
     @Test
-    public void deleteUser() {
-        Response response = given()
-                .contentType("application/json")
-                .when()
-                .delete(URL);
+    public void deleteTest() {
+        info("Getting data");
+        List<String> clientsList = getClientsList();
 
-        response.then().extract().response();
-        response.prettyPrint();
+        info("Verify endpoint is empty");
+        if (clientsList.size() == 0) {
+            error("Checkpoint is empty");
 
-        response.then().statusCode(200);
+        } else {
+            info("Checkpoint is not empty.");
+            info("Deleting all data");
+            deleteAll(getClientsIdList());
+
+            info("Check again for endpoint data");
+            clientsList = getClientsList();
+
+            info("Check endpoint is now empty");
+            Assert.assertEquals(clientsList.size(), 0, "Endpoint is not empty");
+        }
+
     }
 }

@@ -2,7 +2,7 @@ package org.globantBank.data;
 
 public class Client {
 
-    private int ID;
+    private String ID;
     private String Name;
     private String LastName;
     private float AccountNumber;
@@ -13,10 +13,15 @@ public class Client {
     private String Country;
     private float Telephone;
 
-    public Client() {
+
+    public String getEmail() {
+        return Email;
+    }
+    public String getID() {
+        return Email;
     }
 
-    public Client(int ID, String name, String lastName, float accountNumber, double amount, String transactionType, String email, boolean active, String country, float telephone) {
+    public Client(String ID, String name, String lastName, float accountNumber, double amount, String transactionType, String email, boolean active, String country, float telephone) {
         this.ID = ID;
         this.Name = name;
         this.LastName = lastName;
