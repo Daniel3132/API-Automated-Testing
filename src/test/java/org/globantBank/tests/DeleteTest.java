@@ -14,7 +14,7 @@ public class DeleteTest extends BaseTest {
     @Test
     public void deleteTest() {
         info("Getting data");
-        List<String> clientsList = getClientsList();
+        List<String> clientsList = getClientsOrIdClientsList("clients");
 
         info("Verify endpoint is empty");
         if (clientsList.size() == 0) {
@@ -23,10 +23,10 @@ public class DeleteTest extends BaseTest {
         } else {
             info("Checkpoint is not empty.");
             info("Deleting all data");
-            deleteAll(getClientsIdList());
+            deleteAll(getClientsOrIdClientsList("id"));
 
             info("Check again for endpoint data");
-            clientsList = getClientsList();
+            clientsList = getClientsOrIdClientsList("clients");
 
             info("Check endpoint is now empty");
             Assert.assertEquals(clientsList.size(), 0, "Endpoint is not empty");
