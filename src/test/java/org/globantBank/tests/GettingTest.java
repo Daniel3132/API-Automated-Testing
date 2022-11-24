@@ -13,7 +13,7 @@ public class GettingTest extends BaseTest {
     public void getUser() {
         info("Getting clients");
 
-        Response response = basicGetRequest();
+        Response response = GetClientsRequest();
 
         response.prettyPrint();
 

@@ -14,7 +14,6 @@ public class PostTest extends BaseTest {
         Response response = given()
                 .contentType("application/json")
                 .baseUri(URL)
-                .basePath("/clients")
                 .when()
                 .post(URL);
 

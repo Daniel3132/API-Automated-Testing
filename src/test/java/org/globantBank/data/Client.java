@@ -13,14 +13,6 @@ public class Client {
     private String Country;
     private float Telephone;
 
-
-    public String getEmail() {
-        return Email;
-    }
-    public String getID() {
-        return Email;
-    }
-
     public Client(String ID, String name, String lastName, float accountNumber, double amount, String transactionType, String email, boolean active, String country, float telephone) {
         this.ID = ID;
         this.Name = name;
@@ -33,4 +25,5 @@ public class Client {
         this.Country = country;
         this.Telephone = telephone;
     }
+
 }

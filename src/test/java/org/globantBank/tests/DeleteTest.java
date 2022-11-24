@@ -1,5 +1,6 @@
 package org.globantBank.tests;
 
+import org.globantBank.data.Client;
 import org.globantBank.utils.tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,8 +15,9 @@ public class DeleteTest extends BaseTest {
     @Test
     public void deleteTest() {
         info("Getting data");
-        List<String> clientsList = getClientsOrIdClientsList("clients");
+        List<Client> clientsList = getClientsList();
 
+        System.out.println(clientsList);
         info("Verify endpoint is empty");
         if (clientsList.size() == 0) {
             error("Checkpoint is empty");
@@ -23,10 +25,10 @@ public class DeleteTest extends BaseTest {
         } else {
             info("Checkpoint is not empty.");
             info("Deleting all data");
-            deleteAll(getClientsOrIdClientsList("id"));
+            deleteAll(getClientsIdList());
 
             info("Check again for endpoint data");
-            clientsList = getClientsOrIdClientsList("clients");
+            clientsList = getClientsList();
 
             info("Check endpoint is now empty");
             Assert.assertEquals(clientsList.size(), 0, "Endpoint is not empty");

@@ -16,9 +16,10 @@ public class UpdateTest extends BaseTest {
 
         Response response = given()
                 .contentType("application/json")
+                .baseUri(URL)
                 .body("")
                 .when()
-                .put(URL);
+                .put();
 
         response.then().extract().response();
         response.prettyPrint();
