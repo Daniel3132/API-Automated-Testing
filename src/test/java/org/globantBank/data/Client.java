@@ -71,16 +71,16 @@ public class Client {
 
     @Override
     public String toString() {
-        return " ID: " + id + "\n" +
-                " Name: " + name + "\n" +
-                " LastName: " + lastName + "\n" +
-                " AccountNumber: " + accountNumber + "\n" +
-                " Amount: " + amount + "\n" +
-                " TransactionType: " + transactionType + "\n" +
-                " Email: " + email + "\n" +
-                " Active: " + active + "\n" +
-                " Country: " + country + "\n" +
-                " Telephone: " + telephone + "\n\n";
+        return "\nId: " + id +
+                "\nName: " + name +
+                "\nLastName: " + lastName +
+                "\nAccountNumber: " + accountNumber +
+                "\nAmount: " + amount +
+                "\nTransactionType: " + transactionType +
+                "\nEmail: " + email +
+                "\nActive: " + active +
+                "\nCountry: " + country +
+                "\nTelephone: " + telephone;
     }
 
 }

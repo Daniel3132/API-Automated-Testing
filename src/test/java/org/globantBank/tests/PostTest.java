@@ -3,13 +3,11 @@ package org.globantBank.tests;
 import io.restassured.response.Response;
 import org.globantBank.data.Client;
 import org.globantBank.data.ClientProvider;
+import org.globantBank.reporting.Reporter;
 import org.globantBank.utils.tests.BaseTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static io.restassured.RestAssured.given;
 
@@ -19,23 +17,14 @@ public class PostTest extends BaseTest {
     public void postClient() {
         ClientProvider provider = new ClientProvider();
 
-        List<Client> clientsToPostList = new ArrayList<>();
+        Reporter.info("Creating List of Clients to post");
+        List<Client> clientsToPostList = provider.createRandomClientsList(10);
 
-        clientsToPostList.add(provider.createRandomClient());
-        System.out.println(clientsToPostList.get(0));
-
-
+        Reporter.info("Posting all clients created");
         for (Client client : clientsToPostList) {
-            Response response = given()
-                    .baseUri(URL)
-                    .contentType("application/json")
-                    .body(client)
-                    .when()
-                    .post();
-
-            response.prettyPrint();
+            postClientRequest(client);
         }
-
-
     }
+
+
 }

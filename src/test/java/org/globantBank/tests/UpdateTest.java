@@ -1,7 +1,7 @@
 package org.globantBank.tests;
 
 import io.restassured.response.Response;
-import org.globantBank.data.Client;
+import org.globantBank.reporting.Reporter;
 import org.globantBank.utils.tests.BaseTest;
 import org.testng.annotations.Test;
 
@@ -11,7 +11,8 @@ public class UpdateTest extends BaseTest {
 
     @Test
     public void updateClient() {
-        //It should be created as a Client Object
+
+        Reporter.info("Check endpoint is not empty");
 
 
         Response response = given()

@@ -4,6 +4,7 @@ import io.restassured.response.Response;
 import org.globantBank.data.Client;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,7 @@ public class BaseTest {
     public void postClientRequest(Client client) {
         Response response = given()
                 .baseUri(URL)
+                .contentType("application/json")
                 .body(client)
                 .when()
                 .post();
@@ -73,6 +75,4 @@ public class BaseTest {
         Set<String> set = new HashSet<>(emailsList);
         return !(set.size() < emailsList.size());
     }
-
-
 }
