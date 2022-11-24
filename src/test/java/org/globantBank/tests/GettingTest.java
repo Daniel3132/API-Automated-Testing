@@ -12,10 +12,7 @@ public class GettingTest extends BaseTest {
     @Test
     public void getUser() {
         info("Getting clients");
-
-        Response response = GetClientsRequest();
-
-        response.prettyPrint();
+        Response response = getClients();
 
         info("Validate there are not email duplicates");
         Assert.assertTrue(haveEmailDuplicates(response), "There are email duplicates");

@@ -14,17 +14,13 @@ import static org.globantBank.reporting.Reporter.info;
 public class BaseTest {
     protected final String URL = "https://637cceba16c1b892ebbfbedf.mockapi.io/bank/clients";
 
-    public Response GetClientsRequest() {
-        return given()
+    public Response getClients() {
+        info("Getting clients");
+        Response response = given()
                 .contentType("application/json")
                 .baseUri(URL)
                 .when()
                 .get();
-    }
-
-    public Response getClients(){
-        info("Getting clients");
-        Response response = GetClientsRequest();
 
         response.prettyPrint();
 
@@ -34,23 +30,28 @@ public class BaseTest {
         return response;
     }
 
+    public void postClientRequest(Client client) {
+        Response response = given()
+                .baseUri(URL)
+                .body(client)
+                .when()
+                .post();
+
+        response.prettyPrint();
+
+        info("Check Status code for POST is 201");
+        Assert.assertEquals(response.statusCode(), 201, "Status code is not expected (201)");
+    }
+
     public List<Client> getClientsList() {
         Response response = getClients();
         return response.jsonPath().<Client>getList("");
     }
 
-    public List<String> getClientsIdList(){
+    public List<String> getClientsIdList() {
         Response response = getClients();
         return response.jsonPath().<String>getList("id");
     }
-
-    public boolean haveEmailDuplicates(Response response) {
-        List<String> emailsList = response.jsonPath().getList("Email");
-
-        Set<String> set = new HashSet<>(emailsList);
-        return !(set.size() < emailsList.size());
-    }
-
 
     public void deleteAll(List<String> idsList) {
         for (String clientID : idsList) {
@@ -65,5 +66,13 @@ public class BaseTest {
             info("Delete user by ID: " + clientID + "    -    " + status);
         }
     }
+
+    public boolean haveEmailDuplicates(Response response) {
+        List<String> emailsList = response.jsonPath().getList("Email");
+
+        Set<String> set = new HashSet<>(emailsList);
+        return !(set.size() < emailsList.size());
+    }
+
 
 }

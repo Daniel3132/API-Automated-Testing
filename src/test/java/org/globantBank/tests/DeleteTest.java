@@ -17,10 +17,9 @@ public class DeleteTest extends BaseTest {
         info("Getting data");
         List<Client> clientsList = getClientsList();
 
-        System.out.println(clientsList);
         info("Verify endpoint is empty");
         if (clientsList.size() == 0) {
-            error("Checkpoint is empty");
+            warn("Checkpoint is empty");
 
         } else {
             info("Checkpoint is not empty.");
@@ -33,6 +32,6 @@ public class DeleteTest extends BaseTest {
             info("Check endpoint is now empty");
             Assert.assertEquals(clientsList.size(), 0, "Endpoint is not empty");
         }
-
     }
+
 }
