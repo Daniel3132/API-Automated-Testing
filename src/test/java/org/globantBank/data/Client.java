@@ -45,6 +45,10 @@ public class Client {
         return accountNumber;
     }
 
+    public void setAccountNumber(float accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -67,10 +71,6 @@ public class Client {
 
     public String getTelephone() {
         return telephone;
-    }
-
-    public void setAccountNumber(float accountNumber) {
-        this.accountNumber = accountNumber;
     }
 
     @Override

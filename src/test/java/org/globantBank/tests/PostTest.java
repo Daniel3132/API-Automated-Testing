@@ -2,14 +2,14 @@ package org.globantBank.tests;
 
 import org.globantBank.data.Client;
 import org.globantBank.data.ClientProvider;
-import static org.globantBank.reporting.Reporter.*;
 import org.globantBank.utils.tests.BaseTest;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
+
+import static org.globantBank.reporting.Reporter.info;
+import static org.globantBank.reporting.Reporter.warn;
 
 public class PostTest extends BaseTest {
 
