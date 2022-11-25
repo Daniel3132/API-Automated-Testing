@@ -8,6 +8,11 @@ import java.util.List;
 
 public class ClientProvider {
 
+    /**
+     * Pick a transaction type randomly
+     *
+     * @return a random correct transaction type
+     */
     public String getTransactionType() {
         List<String> transactionTypes = new ArrayList<>();
         transactionTypes.add("payment");
@@ -20,6 +25,13 @@ public class ClientProvider {
         return transactionTypes.get(randomIndex);
     }
 
+    /**
+     * create a random client, generating his attributes with the dependency JavaFaker
+     * used to create clients to post and test the email duplicates validator
+     *
+     * @param sameEmail true to chose random email or false to get a established email
+     * @return Client
+     */
     public Client createRandomClient(boolean sameEmail) {
         Faker faker = new Faker();
         String emailToRepeat = "danielcorrea@gmail.com";
@@ -38,6 +50,13 @@ public class ClientProvider {
         );
     }
 
+    /**
+     * Creates a list of random clients given the size of the list it creates all random
+     * but the last two have the same email.
+     *
+     * @param listSize the wished size of the list
+     * @return a list of clients
+     */
     public List<Client> createRandomClientsList(int listSize) {
         List<Client> clientsToPostList = new ArrayList<>();
         List<String> emailsList = new ArrayList<>();

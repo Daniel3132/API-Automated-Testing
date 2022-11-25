@@ -13,6 +13,10 @@ import static org.globantBank.reporting.Reporter.warn;
 
 public class PostTest extends BaseTest {
 
+    /**
+     * Check if there are any register to delete before start posting
+     * Used to avoid duplicate emails error in other tests
+     */
     @BeforeTest
     public void deleteInitialClients() {
         List<Client> clientsList = getClientsList();
@@ -23,12 +27,18 @@ public class PostTest extends BaseTest {
         }
     }
 
+
+    /**
+     * Create 10 random clients ensuring there are not email duplicates
+     * and post all the clients for the list checking a correct status code
+     */
     @Test
     public void postClient() {
+        int wishedRandomClients = 10;
         ClientProvider provider = new ClientProvider();
 
         info("Creating List of Clients to post");
-        List<Client> clientsToPostList = provider.createRandomClientsList(10);
+        List<Client> clientsToPostList = provider.createRandomClientsList(wishedRandomClients);
 
         info("Posting all clients created");
         for (Client client : clientsToPostList) {

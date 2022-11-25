@@ -12,6 +12,10 @@ import static org.globantBank.reporting.Reporter.info;
 
 public class UpdateTest extends BaseTest {
 
+    /**
+     * Get a list of all clients, and pick someone randomly to
+     * change its account number and assert the put request
+     */
     @Test
     public void updateClient() {
         List<String> clientsIdList = getClientsIdList();

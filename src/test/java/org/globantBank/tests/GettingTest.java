@@ -9,8 +9,11 @@ import static org.globantBank.reporting.Reporter.info;
 
 public class GettingTest extends BaseTest {
 
+    /**
+     * Get a list of clients, get their emails and search for duplicates
+     */
     @Test
-    public void getUser() {
+    public void getClient() {
         info("Getting clients");
         Response response = getClients();
 

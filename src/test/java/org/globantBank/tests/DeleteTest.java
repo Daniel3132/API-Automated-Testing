@@ -13,6 +13,9 @@ import static org.globantBank.reporting.Reporter.warn;
 
 public class DeleteTest extends BaseTest {
 
+    /**
+     * Check the endpoint is not empty to begin Deleting all data
+     */
     @Test
     public void deleteTest() {
         info("Getting data");
