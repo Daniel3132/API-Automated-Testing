@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="org.globantBank.utils.Listener"/>
+    </listeners>
+
+    <test name="Post Test">
+        <classes>
+            <class name="org.globantBank.tests.PostTest"/>
+        </classes>
+    </test>
+    <test name="Get Test">
+        <classes>
+            <class name="org.globantBank.tests.GettingTest"/>
+        </classes>
+    </test>
+    <test name="Update Test">
+        <classes>
+            <class name="org.globantBank.tests.UpdateTest"/>
+        </classes>
+    </test>
+    <test name="Delete Test">
+        <classes>
+            <class name="org.globantBank.tests.DeleteTest"/>
+        </classes>
+    </test>
+</suite>
