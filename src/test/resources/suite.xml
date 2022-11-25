@@ -5,14 +5,14 @@
         <listener class-name="org.globantBank.utils.Listener"/>
     </listeners>
 
-    <test name="Get Test">
-        <classes>
-            <class name="org.globantBank.tests.GettingTest"/>
-        </classes>
-    </test>
     <test name="Post Test">
         <classes>
             <class name="org.globantBank.tests.PostTest"/>
+        </classes>
+    </test>
+    <test name="Get Test">
+        <classes>
+            <class name="org.globantBank.tests.GettingTest"/>
         </classes>
     </test>
     <test name="Update Test">

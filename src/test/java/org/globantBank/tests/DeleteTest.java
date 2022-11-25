@@ -7,7 +7,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.globantBank.reporting.Reporter.*;
+import static org.globantBank.reporting.Reporter.info;
+import static org.globantBank.reporting.Reporter.warn;
 
 
 public class DeleteTest extends BaseTest {

@@ -4,7 +4,6 @@ import io.restassured.response.Response;
 import org.globantBank.data.Client;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +30,31 @@ public class BaseTest {
         return response;
     }
 
+    public List<Client> getClientsList() {
+        Response response = getClients();
+        return response.jsonPath().<Client>getList("");
+    }
+
+    public List<String> getClientsIdList() {
+        Response response = getClients();
+        return response.jsonPath().<String>getList("id");
+    }
+
+    public Response getRandomClientFromList(List<String> list) {
+        int index = (int) (Math.random() * list.size());
+        Response response = given()
+                .contentType("application/json")
+                .baseUri(URL)
+                .basePath("/" + list.get(index))
+                .when()
+                .get();
+
+        info("Check Status code for GET request is 200");
+        Assert.assertEquals(response.statusCode(), 200, "Status code is not expected (200)");
+
+        return response;
+    }
+
     public void postClientRequest(Client client) {
         Response response = given()
                 .baseUri(URL)
@@ -45,14 +69,19 @@ public class BaseTest {
         Assert.assertEquals(response.statusCode(), 201, "Status code is not expected (201)");
     }
 
-    public List<Client> getClientsList() {
-        Response response = getClients();
-        return response.jsonPath().<Client>getList("");
-    }
+    public void putClientRequest(Client client) {
+        Response response = given()
+                .contentType("application/json")
+                .baseUri(URL)
+                .basePath("/" + client.getId())
+                .body(client)
+                .when()
+                .put();
 
-    public List<String> getClientsIdList() {
-        Response response = getClients();
-        return response.jsonPath().<String>getList("id");
+        response.prettyPrint();
+
+        info("Validate Status code for PUT request is 200");
+        Assert.assertEquals(response.statusCode(), 200, "Status code is not expected (200)");
     }
 
     public void deleteAll(List<String> idsList) {
@@ -64,15 +93,15 @@ public class BaseTest {
                     .when()
                     .delete();
 
-            String status = (response.getStatusCode() == 200) ? "Success" : "Fail";
+            String status = (response.getStatusCode() == 200) ? "Success  -  200" : "Fail  -  " + response.getStatusCode();
             info("Delete user by ID: " + clientID + "    -    " + status);
         }
     }
 
     public boolean haveEmailDuplicates(Response response) {
-        List<String> emailsList = response.jsonPath().getList("Email");
-
+        List<String> emailsList = response.jsonPath().getList("email");
         Set<String> set = new HashSet<>(emailsList);
-        return !(set.size() < emailsList.size());
+        return set.size() < emailsList.size();
     }
+
 }

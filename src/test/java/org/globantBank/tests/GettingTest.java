@@ -15,6 +15,6 @@ public class GettingTest extends BaseTest {
         Response response = getClients();
 
         info("Validate there are not email duplicates");
-        Assert.assertTrue(haveEmailDuplicates(response), "There are email duplicates");
+        Assert.assertFalse(haveEmailDuplicates(response), "There are email duplicates");
     }
 }

@@ -69,6 +69,10 @@ public class Client {
         return telephone;
     }
 
+    public void setAccountNumber(float accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     @Override
     public String toString() {
         return "\nId: " + id +

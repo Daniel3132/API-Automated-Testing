@@ -1,30 +1,32 @@
 package org.globantBank.tests;
 
 import io.restassured.response.Response;
-import org.globantBank.reporting.Reporter;
+import org.globantBank.data.Client;
 import org.globantBank.utils.tests.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
+import java.util.List;
+
+import static org.globantBank.reporting.Reporter.info;
 
 public class UpdateTest extends BaseTest {
 
     @Test
     public void updateClient() {
+        List<String> clientsIdList = getClientsIdList();
 
-        Reporter.info("Check endpoint is not empty");
+        info("Check endpoint is not empty");
+        Assert.assertTrue(clientsIdList.size() > 0, "There are not clients.");
 
+        info("Getting random client to update");
+        Response responseGET = getRandomClientFromList(clientsIdList);
 
-        Response response = given()
-                .contentType("application/json")
-                .baseUri(URL)
-                .body("")
-                .when()
-                .put();
+        info("Setting new account number");
+        Client clientToUpdate = responseGET.jsonPath().getObject("", org.globantBank.data.Client.class);
+        clientToUpdate.setAccountNumber(100000000);
 
-        response.then().extract().response();
-        response.prettyPrint();
-
-        response.then().statusCode(201);
+        info("Request to update client with id: " + clientToUpdate.getId() + " with new account number: " + clientToUpdate.getAccountNumber());
+        putClientRequest(clientToUpdate);
     }
 }
